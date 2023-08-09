@@ -21,6 +21,10 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/projectDescStakeDatabase
 
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+
 eureka:
   client:
     register-with-eureka: true

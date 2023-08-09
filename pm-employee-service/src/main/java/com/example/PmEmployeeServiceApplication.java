@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-import com.example.entity.EmployeeEntity;
+import com.example.entity.Employee;
 import com.example.service.EmployeeService;
 
 @SpringBootApplication
@@ -22,7 +22,7 @@ public class PmEmployeeServiceApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		EmployeeEntity entity = new EmployeeEntity();
+		Employee entity = new Employee();
 		entity.setFirstName("John");
 		entity.setLastName("Doe");
 		entity.setSkills("FrontEnd");

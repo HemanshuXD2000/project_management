@@ -19,7 +19,7 @@ import lombok.Data;
 public class ProjectMember {
 	
 	@Id
-	@ManyToOne(fetch = FetchType.LAZY,optional = false,targetEntity = EmployeeEntity.class)
+	@ManyToOne(fetch = FetchType.LAZY,optional = false,targetEntity = Employee.class)
 	@JoinColumn(name="team_member_id")
 	private Long employeeId;
 	

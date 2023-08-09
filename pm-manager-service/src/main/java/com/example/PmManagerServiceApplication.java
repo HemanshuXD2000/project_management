@@ -15,5 +15,4 @@ public class PmManagerServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PmManagerServiceApplication.class, args);
 	}
-
 }

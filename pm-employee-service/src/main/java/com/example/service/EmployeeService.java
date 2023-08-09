@@ -1,8 +1,8 @@
 package com.example.service;
 
-import com.example.entity.EmployeeEntity;
+import com.example.entity.Employee;
 
 public interface EmployeeService {
 
-	EmployeeEntity createEmployee(EmployeeEntity employeeEntity);
+	Employee createEmployee(Employee employeeEntity);
 }

@@ -22,11 +22,11 @@ public class SubTask {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long subTaskId;
 	
-	@ManyToOne(fetch = FetchType.LAZY,optional = true,targetEntity = EmployeeEntity.class)
+	@ManyToOne(fetch = FetchType.LAZY,optional = true,targetEntity = Employee.class)
 	private Task taskId;
 	
-	@OneToOne(fetch = FetchType.LAZY,optional = false,targetEntity = EmployeeEntity.class)
-	private EmployeeEntity employeeId;
+	@OneToOne(fetch = FetchType.LAZY,optional = false,targetEntity = Employee.class)
+	private Employee employeeId;
 	
 	private String subTaskTitle;
 	
