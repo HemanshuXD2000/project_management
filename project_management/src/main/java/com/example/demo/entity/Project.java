@@ -46,6 +46,10 @@ public class Project implements Serializable{
 	private Date endDate;
 	
 	@NotNull
+	@Column(name="githubLink")
+	private String githubLink;
+	
+	@NotNull
 	@Column(name="budget")
 	private Long budget;
 	
