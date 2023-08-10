@@ -39,7 +39,15 @@ public class Employee implements Serializable {
 	
 	@Column(name = "last_name")
 	private String lastName;
+	/*
+	@Lob
+	@Column(name = "skills", columnDefinition = "CLOB")
+	private String skills;
 	
+	@NotNull
+	@Column(name = "designation")
+	private String designation;
+	*/
 	@NonNull
 	@Column(name = "user_type")
 	private String userType;
@@ -52,14 +60,9 @@ public class Employee implements Serializable {
 	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "skills")
-	@NonNull
-	private String[] skills;
-	
-
 	@Column(name = "availability", columnDefinition="boolean default 1")
 	private boolean availability;
 	
-	@Column(name = "eul_agreement", columnDefinition="boolean default 0")
+	@Column(name="eul_agreement", columnDefinition="boolean default 0")
 	private boolean eulAgreement;
 }
