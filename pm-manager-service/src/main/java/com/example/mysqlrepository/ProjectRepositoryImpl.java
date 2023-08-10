@@ -24,6 +24,7 @@ public class ProjectRepositoryImpl implements ProjectRepositoryCustom{
 	@PersistenceContext
 	EntityManager entityManager;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProjectMember> completeProject(Project project) {
 		// TODO Auto-generated method stub

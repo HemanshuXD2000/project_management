@@ -24,8 +24,8 @@ public class ProjectServiceImpl implements ProjectService{
 	@Autowired
 	private EmployeeRepository employeeRepository;
 	
-//	@Autowired
-//	private NotificationService notificationService;
+	@Autowired
+	private NotificationService notificationService;
 
 	@Autowired
 	private ProjectMemberRepository projectMemberRepository;
@@ -61,7 +61,7 @@ public class ProjectServiceImpl implements ProjectService{
 			if(M!= null) {
 				//Send a mail to the manager
 			
-				//notificationService.sendmail(project.getManagerId().getUsername());
+				notificationService.sendmail(project.getManagerId().getUsername());
 			}
 	
 		}
@@ -100,6 +100,7 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		//UPDATE THE PROJECT TO COMPLETED
 		project.setCompleted(true);
+		@SuppressWarnings("unused")
 		Project project2 = projectRepository.save(project);
 		
 		
@@ -121,7 +122,7 @@ public class ProjectServiceImpl implements ProjectService{
 				 Employee employee = projectMember.getEmployeeId();
 				 employee.setAvailability(true);
 				 employee.setEulAgreement(false);
-				 //employee.setPassword(notificationService.genHashPassword());
+				 employee.setPassword(notificationService.genHashPassword());
 				 employeeRepository.save(employee);
 	 
 	    }

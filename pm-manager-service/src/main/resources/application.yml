@@ -24,6 +24,17 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: menotify32@gmail.com
+    password: wsepuiqkxnohpkai
+    properties:
+      mail:
+        smtp: 
+          auth: true
+          starttks:
+            enable: true
 
 eureka:
   client:
@@ -38,3 +49,4 @@ management:
       exposure:
         include:
         - '*'
+        

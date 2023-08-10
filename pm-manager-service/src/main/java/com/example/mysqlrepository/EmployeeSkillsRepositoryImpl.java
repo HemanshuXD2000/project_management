@@ -33,6 +33,7 @@ public class EmployeeSkillsRepositoryImpl  implements EmployeeSkillsRepositoryCu
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<EmployeeSkills> getEmployeeSkills(Long employeeId) {
 		// TODO Auto-generated method stub

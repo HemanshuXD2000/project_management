@@ -24,8 +24,8 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
-	//@Autowired
-	//private NotificationService notificationService;
+	@Autowired
+	private NotificationService notificationService;
 	
 	@Override
 	public void saveProjectMember(ProjectMember projectMember) {		
@@ -38,7 +38,7 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
 			employeeRepository.save(E);
 			
 			//Send mail to the employee
-			//notificationService.sendmail(projectMember.getEmployeeId().getUsername());
+			notificationService.sendmail(projectMember.getEmployeeId().getUsername());
 			
 	}
 	

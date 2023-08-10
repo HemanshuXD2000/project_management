@@ -21,8 +21,8 @@ public class SubTaskServiceImpl  implements SubTaskService{
 	@Autowired
 	private TaskRepository taskRepository;
 
-//	@Autowired
-//	private NotificationService notificationService;
+	@Autowired
+	private NotificationService notificationService;
 
 	
 	@Override
@@ -48,7 +48,7 @@ public class SubTaskServiceImpl  implements SubTaskService{
 		
 		
 		//Send mail to the employee
-		//notificationService.SendSubTasknotification(subTask.getEmployeeId());
+		notificationService.SendSubTasknotification(subTask.getEmployeeId());
 		
 		return subtask1;
 	}
