@@ -5,12 +5,20 @@ spring:
 
   application:
     name: login-service
+  
+  boot:
+    admin:
+      client:
+        url:
+        - http://localhost:8888
+ 
     
   datasource:
     url: jdbc:mysql://localhost:3306/hr
     username: root
     password: harsh_9c
-
+  
+ 
     
   jpa:
     hibernate:
