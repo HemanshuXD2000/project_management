@@ -1,5 +1,5 @@
 server:
-  port: 9501
+  port: 0
   
 spring:
   application:
@@ -35,13 +35,21 @@ spring:
           auth: true
           starttks:
             enable: true
+  boot:
+    admin:
+      client:
+        url:
+        - http://localhost:9001
 
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8777/eureka
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
       
 management:
   endpoints:
