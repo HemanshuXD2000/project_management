@@ -13,6 +13,6 @@ public class AuthToken {
 
 	private String token;
 	private String userName;
-	private int employeeId;
+	private Long employeeId;
 	
 }

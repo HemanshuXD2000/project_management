@@ -28,7 +28,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/{id}")
-	public ApiResponse<User> getUserById(@PathVariable int id){
+	public ApiResponse<User> getUserById(@PathVariable Long id){
 		User user=userService.findByUserId(id);
 		if(user!=null) {
 			
@@ -57,7 +57,7 @@ public class UserController {
 		
 		User user=userService.findByUserName(loginUser.getUserName());
 		boolean agree=user.isEulAgreement();
-		int employeeId=user.getEmployeeId();
+		Long employeeId=user.getEmployeeId();
 		if(agree) {
 			return new ApiResponse<>(200,"Agreed",employeeId);
 		}

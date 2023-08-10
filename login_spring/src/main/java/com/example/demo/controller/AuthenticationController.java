@@ -38,7 +38,7 @@ public class AuthenticationController {
 		
 		if(user.getPassword().equals(loginUser.getPassword())) {
 			String userType=user.getUserType();
-			int userId=user.getEmployeeId();
+			Long userId=user.getEmployeeId();
 			String token=UUID.randomUUID().toString();
 			
 			if(userType.toLowerCase().equals("admin")) {
@@ -67,7 +67,7 @@ public class AuthenticationController {
 		if(userObj!=null) {
 			User curUser=new User();
 			curUser.setUserName(user.getUserName());
-			String password=user.getUserName()+"8783*";
+			String password=UUID.randomUUID().toString();
 			StringBuilder sb=new StringBuilder(password);  
 			String hashedPassword=sb.reverse().toString();
 			

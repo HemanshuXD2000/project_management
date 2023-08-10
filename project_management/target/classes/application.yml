@@ -1,0 +1,40 @@
+server:
+  port: 8000
+  
+spring:
+  application:
+    name: project-management
+    
+  boot:
+    admin:
+      client:
+        url:
+        - http://localhost:8888
+
+    
+  datasource:
+    url:  jdbc:mysql://localhost:3306/hr
+    username: root
+    password: harsh_9c
+    
+  jpa:
+    hibernate:
+      ddl-auto: update
+     
+     
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - '*'
