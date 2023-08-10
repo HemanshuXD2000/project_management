@@ -11,24 +11,26 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
-@Data
+@SuppressWarnings("serial")
 @Entity
-@Table(name = "employee")
+@Table(name="employee")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-public class Employee  implements Serializable
-{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3547964656593165965L;
-
+public class Employee implements Serializable {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "employee_id")
 	private Long employeeId;
 	
+	@NonNull
 	@Column(name = "first_name")
 	private String firstName;
 	
@@ -37,29 +39,27 @@ public class Employee  implements Serializable
 	
 	@Column(name = "last_name")
 	private String lastName;
-	/*
-	@Lob
-	@Column(name = "skills", columnDefinition = "CLOB")
-	private String skills;
 	
-	@NotNull
-	@Column(name = "designation")
-	private String designation;
-	*/
-	
+	@NonNull
 	@Column(name = "user_type")
 	private String userType;
 	
+	@NonNull
 	@Column(name = "username", unique = true)
 	private String username;
 	
+	@NonNull
 	@Column(name = "password")
 	private String password;
+	
+	@Column(name = "skills")
+	@NonNull
+	private String[] skills;
+	
 
 	@Column(name = "availability", columnDefinition="boolean default 1")
 	private boolean availability;
 	
-	@Column(name="eul_agreement", columnDefinition="boolean default 0")
+	@Column(name = "eul_agreement", columnDefinition="boolean default 0")
 	private boolean eulAgreement;
-	
 }

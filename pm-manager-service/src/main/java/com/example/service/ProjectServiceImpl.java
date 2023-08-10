@@ -39,7 +39,7 @@ public class ProjectServiceImpl implements ProjectService{
 		//Save the project
 		Project projectResult =  projectRepository.save(project);
 		if(projectResult!= null) {
-			Long a = project.getManagerId().getEmployeeId();		
+			Long a = project.getManager().getEmployeeId();		
 			//Optional<Employee> E = employeeRepository.findById(a);			
 			
 			
@@ -53,7 +53,7 @@ public class ProjectServiceImpl implements ProjectService{
 			//Save project manager in project member table
 			ProjectMember projectMember = new ProjectMember();
 			projectMember.setProjectId(projectResult);
-			projectMember.setEmployeeId(project.getManagerId());
+			projectMember.setEmployeeId(project.getManager());
 			projectMember.setAuthority(true);
 			projectMemberRepository.saveProjectMember(projectMember);
 			
@@ -61,7 +61,7 @@ public class ProjectServiceImpl implements ProjectService{
 			if(M!= null) {
 				//Send a mail to the manager
 			
-				notificationService.sendmail(project.getManagerId().getUsername());
+				notificationService.sendmail(project.getManager().getUsername());
 			}
 	
 		}

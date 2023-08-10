@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.mongodb.lang.NonNull;
 
 import lombok.Data;
 import lombok.Getter;
@@ -37,7 +38,7 @@ public class Subtask implements Serializable {
 	@Column(name = "sub_task_id")
 	private Long subTaskId;
 	
-
+	@NonNull
 	@ManyToOne(fetch = FetchType.LAZY,optional=true,targetEntity = Task.class)
     @JoinColumn(name="task_id")
 	private Task taskId;	
