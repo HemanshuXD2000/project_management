@@ -45,7 +45,7 @@ public class Employee implements Serializable {
 	private String userType;
 	
 	@NonNull
-	@Column(name = "username", unique = true)
+	@Column(name = "user_name", unique = true)
 	private String username;
 	
 	@NonNull
