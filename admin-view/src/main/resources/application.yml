@@ -1,6 +1,15 @@
 server:
-  port: 8888
+  port: 0
 spring:
+  boot:
+    admin:
+      client:
+        url:
+        - http://localhost:8888
+  zipkin:
+    base-url: http://localhost:9411
+  main:
+    allow-bean-definition-overriding: true
   data:
     mongodb:
       uri: mongodb://localhost:27017/project
@@ -15,7 +24,22 @@ spring:
     open-in-view: false
       
   application:
-    name: admin-view-service
+    name: admin-view
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8889/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - '*'
 
 logging:
   file:
