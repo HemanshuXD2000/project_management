@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,11 +33,12 @@ public class SubTaskController {
 	
 	
 	@PutMapping("/updateProgress/{subtaskId}/{progressPercentage}/{comment}")
-	public void updateProgress(@PathVariable(value = "subtaskId") Long subtaskId, 
+	public ResponseEntity<?> updateProgress(@PathVariable(value = "subtaskId") Long subtaskId, 
 			@PathVariable(value = "progressPercentage") Long progressPercentage, 
 			@PathVariable(value="comment") String comment) {
 
 		subTaskService.updateProgress(subtaskId, progressPercentage, comment);
+		return ResponseEntity.status(HttpStatus.OK).body(progressPercentage);
 		
 	}
 	
