@@ -10,6 +10,7 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.example.composite.ProjectMemberComposite;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -36,6 +37,7 @@ public class ProjectMember implements Serializable{/**
     @JoinColumn(name="project_id")
 	private Project projectId;
 	
+	@NotNull
 	@Column(name = "authority", columnDefinition="boolean default 1")
 	private boolean authority;
 }

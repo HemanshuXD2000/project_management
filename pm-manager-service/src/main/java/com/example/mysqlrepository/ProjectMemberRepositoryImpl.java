@@ -41,10 +41,14 @@ public class ProjectMemberRepositoryImpl implements ProjectMemberRepositoryCusto
 	@Override
 	public List<ProjectMember> getProjectMemberByProjectId(Project project) {
 		// TODO Auto-generated method stub		
-		Query query = entityManager.createNativeQuery("select * from project_member pm inner join employee e  where pm.project_id=:projectId "
-				+ "and e.employee_id = pm.employee_id\r\n" + 
-				"			and \r\n" + 
-				"			e.user_type='MEMBER'", ProjectMember.class);
+//		Query query = entityManager.createNativeQuery("select * from project_member pm inner join employee e  where pm.project_id=:projectId "
+//				+ "and e.employee_id = pm.employee_id\r\n" + 
+//				"			and \r\n" + 
+//				"			e.user_type='MEMBER'", ProjectMember.class);
+		Query query = entityManager.createNativeQuery(
+				"select * from project_member pm inner join employee e "
+				+ "where pm.project_id=:projectId "
+				+ "and e.employee_id = pm.employee_id", ProjectMember.class);
 		query.setParameter("projectId", project.getProjectId());		
 		return query.getResultList();
 	}

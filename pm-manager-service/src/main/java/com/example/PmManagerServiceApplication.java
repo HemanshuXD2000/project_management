@@ -12,6 +12,8 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableJpaRepositories (basePackages = {"com.example.mysqlrepository","com.example.repository"})
 public class PmManagerServiceApplication {
 
+	
+		
 	public static void main(String[] args) {
 		SpringApplication.run(PmManagerServiceApplication.class, args);
 	}
