@@ -26,4 +26,15 @@ public class SubTaskServiceImpl implements SubTaskService {
 		}
 	}
 
+	@Override
+	public List<SubTask> listAllSubTasks() {
+		// TODO Auto-generated method stub
+		List<SubTask> sub = subTaskRepo.findAll();
+		if(sub.isEmpty()) {
+			throw new RecordNotFoundException("No results");
+		}else {
+			return sub;
+		}
+	}
+
 }

@@ -60,6 +60,6 @@ public class Project implements Serializable {
 	
 	@ManyToOne(optional=false,targetEntity = Employee.class)
     @JoinColumn(name="manager_id")
-	private Employee manager;
+	private Employee managerId;
 	
 }

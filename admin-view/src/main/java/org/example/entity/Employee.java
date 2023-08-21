@@ -52,10 +52,6 @@ public class Employee implements Serializable {
 	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "skills")
-	@NonNull
-	private String[] skills;
-	
 
 	@Column(name = "availability", columnDefinition="boolean default 1")
 	private boolean availability;

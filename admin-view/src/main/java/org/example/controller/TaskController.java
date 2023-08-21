@@ -7,6 +7,7 @@ import org.example.service.TaskService;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1")
 @AllArgsConstructor
@@ -28,13 +30,13 @@ public class TaskController {
 	}
 	
 	@GetMapping("/tasks/getAll")
-	public ResponseEntity<List<Task>> getAllTasks(){
-		return ResponseEntity.ok(taskService.getAllTasks());
+	public List<Task> getAllTasks(){
+		return taskService.getAllTasks();
 	}
 	
 	@GetMapping("/tasks/{projectId}")
-	public ResponseEntity<?> getTasksByProjectId(@PathVariable("projectId") long projectId){
-		return ResponseEntity.status(HttpStatus.FOUND).body(taskService.getTasksByProjectId(projectId));
+	public List<Task> getTasksByProjectId(@PathVariable("projectId") long projectId){
+		return taskService.getTasksByProjectId(projectId);
 	}
 	
 	

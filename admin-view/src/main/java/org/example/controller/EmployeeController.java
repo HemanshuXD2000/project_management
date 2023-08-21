@@ -7,6 +7,7 @@ import org.example.service.EmployeeService;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1")
 @AllArgsConstructor
@@ -31,18 +33,18 @@ public class EmployeeController {
 	
 	
 	@GetMapping("/employees/findAll")
-	public ResponseEntity<List<Employee>> findAll(){
-		return ResponseEntity.ok(empService.findAll());
+	public List<Employee> findAll(){
+		return empService.findAll();
 	}
 	
 	@GetMapping("/employees/find/{keyword}")
-	public ResponseEntity<List<Employee>> findByKeyword(@PathVariable("keyword") String keyword){
-		return ResponseEntity.status(HttpStatus.FOUND).body(empService.findByKeyWord(keyword));
+	public List<Employee> findByKeyword(@PathVariable("keyword") String keyword){
+		return empService.findByKeyWord(keyword);
 	}
 	
 	@PostMapping("/employees/add")
-	public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee){
-		return ResponseEntity.ok(empService.addEmployee(employee));
+	public Employee addEmployee(@RequestBody Employee employee){
+		return empService.addEmployee(employee);
 	}
 	
 	

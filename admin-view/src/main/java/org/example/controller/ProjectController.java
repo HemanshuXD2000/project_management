@@ -3,10 +3,14 @@ package org.example.controller;
 import java.util.List;
 
 import org.example.entity.Project;
+import org.example.model.ProjectDescStake;
+import org.example.service.ProjectMongoService;
 import org.example.service.ProjectService;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1")
 @AllArgsConstructor
@@ -23,6 +28,7 @@ public class ProjectController {
 	
 	private final ProjectService projService;
 	private final Environment env;
+	private final ProjectMongoService projectMongoService;
 	
 	@GetMapping("/projects/status")
 	public String getStatus() {
@@ -30,37 +36,46 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/projects/findAll")
-	public ResponseEntity<List<Project>> getAllProjects(){
-		return ResponseEntity.ok(projService.getAllProjects());
+	public List<Project> getAllProjects(){
+		return projService.getAllProjects();
 	}
 	
 	@GetMapping("/projects/findById/{id}")
-	public ResponseEntity<?> getProjectById(@PathVariable("id") Long id){
-		return ResponseEntity.status(HttpStatus.FOUND).body(projService.findById(id));
+	public Project getProjectById(@PathVariable("id") Long id){
+		return projService.findById(id);
 	}
 	
 	@GetMapping("/projects/completed")
-	public ResponseEntity<?> getCompletedProjects(){
-		return ResponseEntity.status(HttpStatus.FOUND).body(projService.findCompletedProjects());
+	public List<Project> getCompletedProjects(){
+		return projService.findCompletedProjects();
 	}
 	
 	@GetMapping("/projects/ongoing")
-	public ResponseEntity<?> getOngoingProjects(){
-		return ResponseEntity.status(HttpStatus.FOUND).body(projService.findOngoingProjects());
+	public List<Project> getOngoingProjects(){
+		return projService.findOngoingProjects();
 	}
 	
 	@GetMapping("/projects/completed/{year}")
-	public ResponseEntity<?> getCompletedProjectsByStartingYear(@PathVariable("year") int year){
-		return ResponseEntity.status(HttpStatus.FOUND).body(projService.findCompletedProjectsByStartDate(year));
+	public List<Project> getCompletedProjectsByStartingYear(@PathVariable("year") int year){
+		return projService.findCompletedProjectsByStartDate(year);
 	}
 	
 	@GetMapping("/projects/ongoing/{year}")
-	public ResponseEntity<?> getOngoingProjectsByStartingYear(@PathVariable("year") int year){
-		return ResponseEntity.status(HttpStatus.FOUND).body(projService.findOngoingProjectsByStartDate(year));
+	public List<Project> getOngoingProjectsByStartingYear(@PathVariable("year") int year){
+		return projService.findOngoingProjectsByStartDate(year);
 	}
 	
 	@PostMapping("/projects/save")
-	public ResponseEntity<Project> addProject(@RequestBody Project project){
-		return ResponseEntity.ok(projService.addProject(project));
+	public Project addProject(@RequestBody Project project){
+		return projService.addProject(project);
+	}
+	
+	//get data from mongo
+	@LoadBalanced
+	@GetMapping("/projects/mongodb/{theId}")
+	public List<ProjectDescStake> findByProjId(@PathVariable Long theId)
+	{
+		System.out.println(env.getProperty("server.port"));
+		return projectMongoService.getProjectDetails(theId);
 	}
 }

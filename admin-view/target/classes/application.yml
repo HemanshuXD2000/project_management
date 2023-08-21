@@ -22,9 +22,11 @@ spring:
       ddl-auto: update
     show-sql: false
     open-in-view: false
+    properties:
+      dialect: org.hibernate.dialect.MySQL8Dialect
       
   application:
-    name: admin-view
+    name: admin-service
 eureka:
   client:
     register-with-eureka: true
