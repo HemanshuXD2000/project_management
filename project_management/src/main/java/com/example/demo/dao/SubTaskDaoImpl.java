@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import com.example.demo.entity.*;
+import com.example.demo.exception.RecordNotFoundException;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -37,6 +38,10 @@ public class SubTaskDaoImpl implements SubTaskDao{
 		Long totalProgress=0L;
 		
 		SubTask subTask=subTaskRepository.findBySubTaskId(subTaskId);
+		
+		if(subTask==null) {
+			throw new RecordNotFoundException("Subtask not found");
+		}
 		
 		Task taskObj=subTask.getTaskId();
 		
